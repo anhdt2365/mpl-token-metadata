@@ -1,15 +1,14 @@
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { TransactionHandler } from '@metaplex-foundation/amman';
 import { DataV2, MetadataDataData } from '../../src/mpl-token-metadata';
-import * as spl from '@solana/spl-token';
-declare type CreateMetadataParams = {
+type CreateMetadataParams = {
     transactionHandler: TransactionHandler;
     publicKey: PublicKey;
     editionMint: PublicKey;
     metadataData: MetadataDataData;
     updateAuthority?: PublicKey;
 };
-declare type CreateMetadataV2Params = {
+type CreateMetadataV2Params = {
     transactionHandler: TransactionHandler;
     publicKey: PublicKey;
     mint: PublicKey;
@@ -29,11 +28,11 @@ export declare function mintAndCreateMetadata(connection: Connection, transactio
     metadata: PublicKey;
 }>;
 export declare function mintAndCreateMetadataV2(connection: Connection, transactionHandler: TransactionHandler, payer: Keypair, args: DataV2): Promise<{
-    mint: spl.Token;
+    mint: PublicKey;
     metadata: PublicKey;
 }>;
 export declare function createMasterEdition(connection: Connection, transactionHandler: TransactionHandler, payer: Keypair, args: DataV2, maxSupply: number): Promise<{
-    mint: spl.Token;
+    mint: PublicKey;
     metadata: PublicKey;
     masterEditionPubkey: PublicKey;
     createTxDetails: import("@metaplex-foundation/amman").ConfirmedTransactionDetails;

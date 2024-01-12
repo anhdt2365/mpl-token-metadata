@@ -1,6 +1,6 @@
 import { Borsh, StringPublicKey } from '@remitano-anhdt/mpl-core';
 import { MetadataKey } from './constants';
-declare type Args = {
+type Args = {
     key: StringPublicKey;
     verified: boolean;
 };
@@ -10,7 +10,7 @@ export declare class Collection extends Borsh.Data<Args> {
     verified: boolean;
     constructor(args: Args);
 }
-declare type CollectionAuthorityRecordArgs = {
+type CollectionAuthorityRecordArgs = {
     bump: number;
 };
 export declare class CollctionAuthorityRecord extends Borsh.Data<CollectionAuthorityRecordArgs> {

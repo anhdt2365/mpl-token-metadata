@@ -11,18 +11,18 @@ var MetadataKey;
     MetadataKey[MetadataKey["EditionMarker"] = 7] = "EditionMarker";
     MetadataKey[MetadataKey["UseAuthorityRecord"] = 8] = "UseAuthorityRecord";
     MetadataKey[MetadataKey["CollectionAuthorityRecord"] = 9] = "CollectionAuthorityRecord";
-})(MetadataKey = exports.MetadataKey || (exports.MetadataKey = {}));
+})(MetadataKey || (exports.MetadataKey = MetadataKey = {}));
 var UseMethod;
 (function (UseMethod) {
     UseMethod[UseMethod["Burn"] = 0] = "Burn";
     UseMethod[UseMethod["Single"] = 1] = "Single";
     UseMethod[UseMethod["Multiple"] = 2] = "Multiple";
-})(UseMethod = exports.UseMethod || (exports.UseMethod = {}));
+})(UseMethod || (exports.UseMethod = UseMethod = {}));
 var TokenStandard;
 (function (TokenStandard) {
     TokenStandard[TokenStandard["NonFungible"] = 0] = "NonFungible";
     TokenStandard[TokenStandard["FungibleAsset"] = 1] = "FungibleAsset";
     TokenStandard[TokenStandard["Fungible"] = 2] = "Fungible";
     TokenStandard[TokenStandard["NonFungibleEdition"] = 3] = "NonFungibleEdition";
-})(TokenStandard = exports.TokenStandard || (exports.TokenStandard = {}));
+})(TokenStandard || (exports.TokenStandard = TokenStandard = {}));
 //# sourceMappingURL=constants.js.map

@@ -7,7 +7,7 @@ import { MasterEdition } from './MasterEdition';
 import { Uses } from './Uses';
 import { Collection } from './Collection';
 import { MetadataKey, TokenStandard } from './constants';
-declare type CreatorArgs = {
+type CreatorArgs = {
     address: StringPublicKey;
     verified: boolean;
     share: number;
@@ -18,14 +18,14 @@ export declare class Creator extends Borsh.Data<CreatorArgs> {
     verified: boolean;
     share: number;
 }
-declare type DataArgs = {
+type DataArgs = {
     name: string;
     symbol: string;
     uri: string;
     sellerFeeBasisPoints: number;
     creators: Creator[] | null;
 };
-declare type DataV2Args = {
+type DataV2Args = {
     name: string;
     symbol: string;
     uri: string;
@@ -53,7 +53,7 @@ export declare class MetadataDataData extends Borsh.Data<DataArgs> {
     creators: Creator[] | null;
     constructor(args: DataArgs);
 }
-declare type Args = {
+type Args = {
     updateAuthority: StringPublicKey;
     mint: StringPublicKey;
     data: MetadataDataData;

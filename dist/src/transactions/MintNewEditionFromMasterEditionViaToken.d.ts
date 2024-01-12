@@ -8,7 +8,7 @@ export declare class MintNewEditionFromMasterEditionViaTokenArgs extends Borsh.D
     instruction: number;
     edition: BN;
 }
-declare type MintNewEditionFromMasterEditionViaTokenParams = {
+type MintNewEditionFromMasterEditionViaTokenParams = {
     edition: PublicKey;
     metadata: PublicKey;
     updateAuthority: PublicKey;

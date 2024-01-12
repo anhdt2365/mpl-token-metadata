@@ -4,7 +4,7 @@ export declare class FreezeDelegatedAccountArgs extends Borsh.Data {
     static readonly SCHEMA: any;
     instruction: number;
 }
-declare type FreezeDelegatedAccountParams = {
+type FreezeDelegatedAccountParams = {
     delegate: PublicKey;
     token_account: PublicKey;
     edition: PublicKey;

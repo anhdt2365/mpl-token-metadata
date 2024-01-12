@@ -4,7 +4,7 @@ export declare class RemoveCreatorVerificationArgs extends Borsh.Data {
     static readonly SCHEMA: any;
     instruction: number;
 }
-declare type RemoveCreatorVerificationParams = {
+type RemoveCreatorVerificationParams = {
     metadata: PublicKey;
     creator: PublicKey;
 };

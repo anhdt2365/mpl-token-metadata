@@ -4,7 +4,7 @@ export declare class UpdatePrimarySaleHappenedViaTokenArgs extends Borsh.Data {
     static readonly SCHEMA: any;
     instruction: number;
 }
-declare type UpdatePrimarySaleHappenedViaTokenParams = {
+type UpdatePrimarySaleHappenedViaTokenParams = {
     metadata: PublicKey;
     owner: PublicKey;
     tokenAccount: PublicKey;

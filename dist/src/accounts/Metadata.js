@@ -157,16 +157,16 @@ class Metadata extends mpl_core_1.Account {
         const accountMap = new Map(accounts.map(({ data }) => [data.mint.toString(), data]));
         const allMetadata = await Metadata.findMany(connection);
         return allMetadata.filter((metadata) => {
-            var _a, _b;
+            var _a;
             return accountMap.has(metadata.data.mint) &&
-                (((_b = (_a = accountMap === null || accountMap === void 0 ? void 0 : accountMap.get(metadata.data.mint)) === null || _a === void 0 ? void 0 : _a.amount) === null || _b === void 0 ? void 0 : _b.toNumber()) || 0) > 0;
+                (((_a = accountMap === null || accountMap === void 0 ? void 0 : accountMap.get(metadata.data.mint)) === null || _a === void 0 ? void 0 : _a.amount) || 0) > 0;
         });
     }
     static async findByOwnerV2(connection, owner) {
         const accounts = await mpl_core_1.TokenAccount.getTokenAccountsByOwner(connection, owner);
         const accountsWithAmount = accounts
             .map(({ data }) => data)
-            .filter(({ amount }) => (amount === null || amount === void 0 ? void 0 : amount.toNumber()) > 0);
+            .filter(({ amount }) => amount > 0);
         return (await Promise.all(accountsWithAmount.map(({ mint }) => Metadata.findMany(connection, { mint })))).flat();
     }
     static async findByOwnerV3(connection, owner) {
@@ -176,8 +176,7 @@ class Metadata extends mpl_core_1.Account {
     static async findInfoByOwner(connection, owner) {
         const accounts = await mpl_core_1.TokenAccount.getTokenAccountsByOwner(connection, owner);
         const metadataPdaLookups = accounts.reduce((memo, { data }) => {
-            var _a;
-            return ((_a = data.amount) === null || _a === void 0 ? void 0 : _a.eq(new bn_js_1.default(1))) ? [...memo, Metadata.getPDA(data.mint)] : memo;
+            return new bn_js_1.default(data.amount.toString()).eq(new bn_js_1.default(1)) ? [...memo, Metadata.getPDA(data.mint)] : memo;
         }, []);
         const metadataAddresses = await Promise.all(metadataPdaLookups);
         return mpl_core_1.Account.getInfos(connection, metadataAddresses);

@@ -4,7 +4,7 @@ export declare class RevokeCollectionAuthorityArgs extends Borsh.Data {
     static readonly SCHEMA: any;
     instruction: number;
 }
-declare type RevokeCollectionAuthorityParams = {
+type RevokeCollectionAuthorityParams = {
     collectionAuthorityRecord: PublicKey;
     newCollectionAuthority?: PublicKey;
     delegateAuthority?: PublicKey;

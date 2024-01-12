@@ -5,7 +5,7 @@ export declare class UtilizeArgs extends Borsh.Data {
     instruction: number;
     numberOfUses: number;
 }
-declare type UtilizeParams = {
+type UtilizeParams = {
     numberOfUses: number;
     metadata: PublicKey;
     mint: PublicKey;

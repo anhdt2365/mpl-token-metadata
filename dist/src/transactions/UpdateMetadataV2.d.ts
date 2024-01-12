@@ -14,7 +14,7 @@ export declare class UpdateMetadataV2Args extends Borsh.Data<{
     primarySaleHappened: boolean | null;
     isMutable: boolean | null;
 }
-declare type UpdateMetadataV2Params = {
+type UpdateMetadataV2Params = {
     metadata: PublicKey;
     updateAuthority: PublicKey;
     metadataData?: DataV2;

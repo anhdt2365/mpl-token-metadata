@@ -25,7 +25,7 @@ const transactions_1 = require("../src/transactions");
         symbol: utils_1.SYMBOL,
         sellerFeeBasisPoints: utils_1.SELLER_FEE_BASIS_POINTS,
         creators: null,
-        collection: new accounts_1.Collection({ key: collectionNft.mint.publicKey.toBase58(), verified: false }),
+        collection: new accounts_1.Collection({ key: collectionNft.mint.toBase58(), verified: false }),
         uses: null,
     });
     const collectionMemberNft = await (0, actions_1.createMasterEdition)(connection, transactionHandler, payer, initMetadataData, 0);
@@ -36,7 +36,7 @@ const transactions_1 = require("../src/transactions");
     const collectionVerifyCollectionTransaction = new mpl_token_metadata_1.VerifyCollection({ feePayer: payer.publicKey }, {
         metadata: collectionMemberNft.metadata,
         collectionAuthority: payer.publicKey,
-        collectionMint: collectionNft.mint.publicKey,
+        collectionMint: collectionNft.mint,
         collectionMetadata: collectionNft.metadata,
         collectionMasterEdition: collectionNft.masterEditionPubkey,
     });
@@ -70,7 +70,7 @@ const transactions_1 = require("../src/transactions");
         metadata: collectionMemberNft.metadata,
         collectionAuthority: payer.publicKey,
         updateAuthority: payer.publicKey,
-        collectionMint: collectionNft.mint.publicKey,
+        collectionMint: collectionNft.mint,
         collectionMetadata: collectionNft.metadata,
         collectionMasterEdition: collectionNft.masterEditionPubkey,
     });
@@ -94,7 +94,7 @@ const transactions_1 = require("../src/transactions");
             symbol: utils_1.SYMBOL,
             sellerFeeBasisPoints: utils_1.SELLER_FEE_BASIS_POINTS,
             creators: null,
-            collection: new accounts_1.Collection({ key: collectionNft.mint.publicKey.toBase58(), verified: false }),
+            collection: new accounts_1.Collection({ key: collectionNft.mint.toBase58(), verified: false }),
             uses: null,
         });
         const collectionMemberNft = await (0, actions_1.createMasterEdition)(connection, transactionHandler, payer, initMetadataData, 0);
@@ -103,11 +103,11 @@ const transactions_1 = require("../src/transactions");
         t.false((_a = updatedMetadataBeforeVerification.collection) === null || _a === void 0 ? void 0 : _a.verified, 'collection cant be verified');
         const delegatedAuthority = web3_js_1.Keypair.generate();
         await (0, amman_1.airdrop)(connection, delegatedAuthority.publicKey, 2);
-        const dARecord = await mpl_token_metadata_1.MetadataProgram.findCollectionAuthorityAccount(collectionNft.mint.publicKey, delegatedAuthority.publicKey);
+        const dARecord = await mpl_token_metadata_1.MetadataProgram.findCollectionAuthorityAccount(collectionNft.mint, delegatedAuthority.publicKey);
         const collectionVerifyCollectionTransaction = new mpl_token_metadata_1.VerifyCollection({ feePayer: payer.publicKey }, {
             metadata: collectionMemberNft.metadata,
             collectionAuthority: delegatedAuthority.publicKey,
-            collectionMint: collectionNft.mint.publicKey,
+            collectionMint: collectionNft.mint,
             collectionMetadata: collectionNft.metadata,
             collectionMasterEdition: collectionNft.masterEditionPubkey,
             collectionAuthorityRecord: dARecord[0],
@@ -136,12 +136,12 @@ const transactions_1 = require("../src/transactions");
         t.notOk(updatedMetadataBeforeVerification.collection, 'collection should be null');
         const delegatedAuthority = web3_js_1.Keypair.generate();
         await (0, amman_1.airdrop)(connection, delegatedAuthority.publicKey, 2);
-        const dARecord = await mpl_token_metadata_1.MetadataProgram.findCollectionAuthorityAccount(collectionNft.mint.publicKey, delegatedAuthority.publicKey);
+        const dARecord = await mpl_token_metadata_1.MetadataProgram.findCollectionAuthorityAccount(collectionNft.mint, delegatedAuthority.publicKey);
         const collectionVerifyCollectionTransaction = new transactions_1.SetAndVerifyCollectionCollection({ feePayer: delegatedAuthority.publicKey }, {
             metadata: collectionMemberNft.metadata,
             collectionAuthority: delegatedAuthority.publicKey,
             updateAuthority: payer.publicKey,
-            collectionMint: collectionNft.mint.publicKey,
+            collectionMint: collectionNft.mint,
             collectionMetadata: collectionNft.metadata,
             collectionMasterEdition: collectionNft.masterEditionPubkey,
             collectionAuthorityRecord: dARecord[0],
@@ -163,7 +163,7 @@ const transactions_1 = require("../src/transactions");
             symbol: utils_1.SYMBOL,
             sellerFeeBasisPoints: utils_1.SELLER_FEE_BASIS_POINTS,
             creators: null,
-            collection: new accounts_1.Collection({ key: collectionNft.mint.publicKey.toBase58(), verified: false }),
+            collection: new accounts_1.Collection({ key: collectionNft.mint.toBase58(), verified: false }),
             uses: null,
         });
         const collectionMemberNft = await (0, actions_1.createMasterEdition)(connection, transactionHandler, payer, initMetadataData, 0);
@@ -172,20 +172,20 @@ const transactions_1 = require("../src/transactions");
         t.false((_a = updatedMetadataBeforeVerification.collection) === null || _a === void 0 ? void 0 : _a.verified, 'collection cant be verified');
         const delegatedAuthority = web3_js_1.Keypair.generate();
         await (0, amman_1.airdrop)(connection, delegatedAuthority.publicKey, 2);
-        const dARecord = await mpl_token_metadata_1.MetadataProgram.findCollectionAuthorityAccount(collectionNft.mint.publicKey, delegatedAuthority.publicKey);
+        const dARecord = await mpl_token_metadata_1.MetadataProgram.findCollectionAuthorityAccount(collectionNft.mint, delegatedAuthority.publicKey);
         const approveTransaction = new mpl_token_metadata_1.ApproveCollectionAuthority({ feePayer: payer.publicKey }, {
             collectionAuthorityRecord: dARecord[0],
             newCollectionAuthority: delegatedAuthority.publicKey,
             updateAuthority: payer.publicKey,
             metadata: collectionNft.metadata,
-            mint: collectionNft.mint.publicKey,
+            mint: collectionNft.mint,
         });
         const approveTxnDetails = await transactionHandler.sendAndConfirmTransaction(approveTransaction, [payer], { skipPreflight: true });
         (0, utils_1.logDebug)(approveTxnDetails.txSummary.logMessages.join('\n'));
         const collectionVerifyCollectionTransaction = new mpl_token_metadata_1.VerifyCollection({ feePayer: payer.publicKey }, {
             metadata: collectionMemberNft.metadata,
             collectionAuthority: delegatedAuthority.publicKey,
-            collectionMint: collectionNft.mint.publicKey,
+            collectionMint: collectionNft.mint,
             collectionMetadata: collectionNft.metadata,
             collectionMasterEdition: collectionNft.masterEditionPubkey,
             collectionAuthorityRecord: dARecord[0],
@@ -217,13 +217,13 @@ const transactions_1 = require("../src/transactions");
         t.not(updatedMetadataBeforeVerification.collection, 'collection should be null');
         const delegatedAuthority = web3_js_1.Keypair.generate();
         await (0, amman_1.airdrop)(connection, delegatedAuthority.publicKey, 2);
-        const dARecord = await mpl_token_metadata_1.MetadataProgram.findCollectionAuthorityAccount(collectionNft.mint.publicKey, delegatedAuthority.publicKey);
+        const dARecord = await mpl_token_metadata_1.MetadataProgram.findCollectionAuthorityAccount(collectionNft.mint, delegatedAuthority.publicKey);
         const approveTransaction = new mpl_token_metadata_1.ApproveCollectionAuthority({ feePayer: payer.publicKey }, {
             collectionAuthorityRecord: dARecord[0],
             newCollectionAuthority: delegatedAuthority.publicKey,
             updateAuthority: payer.publicKey,
             metadata: collectionNft.metadata,
-            mint: collectionNft.mint.publicKey,
+            mint: collectionNft.mint,
         });
         const approveTxnDetails = await transactionHandler.sendAndConfirmTransaction(approveTransaction, [payer], { skipPreflight: true });
         (0, utils_1.logDebug)(approveTxnDetails.txSummary.logMessages.join('\n'));
@@ -231,7 +231,7 @@ const transactions_1 = require("../src/transactions");
             metadata: collectionMemberNft.metadata,
             collectionAuthority: delegatedAuthority.publicKey,
             updateAuthority: payer.publicKey,
-            collectionMint: collectionNft.mint.publicKey,
+            collectionMint: collectionNft.mint,
             collectionMetadata: collectionNft.metadata,
             collectionMasterEdition: collectionNft.masterEditionPubkey,
             collectionAuthorityRecord: dARecord[0],

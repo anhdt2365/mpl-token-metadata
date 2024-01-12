@@ -4,7 +4,7 @@ export declare class SignMetadataArgs extends Borsh.Data {
     static readonly SCHEMA: any;
     instruction: number;
 }
-declare type SignMetadataParams = {
+type SignMetadataParams = {
     metadata: PublicKey;
     creator: PublicKey;
 };

@@ -4,7 +4,7 @@ import { AccountInfo, PublicKey } from '@solana/web3.js';
 import BN from 'bn.js';
 import { Buffer } from 'buffer';
 import { MetadataKey } from './constants';
-declare type Args = {
+type Args = {
     key: MetadataKey;
     parent: StringPublicKey;
     edition: BN;

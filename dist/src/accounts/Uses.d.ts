@@ -1,6 +1,6 @@
 import { Borsh } from '@remitano-anhdt/mpl-core';
 import { MetadataKey, UseMethod } from '.';
-declare type UsesArgs = {
+type UsesArgs = {
     useMethod: UseMethod;
     total: number;
     remaining: number;
@@ -12,7 +12,7 @@ export declare class Uses extends Borsh.Data<UsesArgs> {
     remaining: number;
     constructor(args: UsesArgs);
 }
-declare type UseAuthorityRecordArgs = {
+type UseAuthorityRecordArgs = {
     allowedUses: number;
     bump: number;
 };

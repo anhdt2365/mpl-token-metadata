@@ -5,7 +5,7 @@ export declare class ApproveUseAuthorityArgs extends Borsh.Data {
     instruction: number;
     numberOfUses: number;
 }
-declare type ApproveUseAuthorityParams = {
+type ApproveUseAuthorityParams = {
     useAuthorityRecord: PublicKey;
     user: PublicKey;
     owner: PublicKey;

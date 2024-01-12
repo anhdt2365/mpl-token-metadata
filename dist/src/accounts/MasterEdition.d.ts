@@ -5,7 +5,7 @@ import { Edition } from './Edition';
 import { Buffer } from 'buffer';
 import { AccountInfo, Connection, PublicKey } from '@solana/web3.js';
 import { MetadataKey } from './constants';
-declare type ArgsV1 = {
+type ArgsV1 = {
     key: MetadataKey;
     supply: BN;
     maxSupply?: BN;
@@ -21,7 +21,7 @@ export declare class MasterEditionV1Data extends Borsh.Data<ArgsV1> {
     oneTimePrintingAuthorizationMint: StringPublicKey;
     constructor(args: ArgsV1);
 }
-declare type ArgsV2 = {
+type ArgsV2 = {
     key: MetadataKey;
     supply: BN;
     maxSupply?: BN;
@@ -33,7 +33,7 @@ export declare class MasterEditionV2Data extends Borsh.Data<ArgsV2> {
     maxSupply?: BN;
     constructor(args: ArgsV2);
 }
-export declare type MasterEditionData = MasterEditionV1Data | MasterEditionV2Data;
+export type MasterEditionData = MasterEditionV1Data | MasterEditionV2Data;
 export declare class MasterEdition extends Account<MasterEditionData> {
     static readonly EDITION_PREFIX = "edition";
     constructor(key: AnyPublicKey, info: AccountInfo<Buffer>);

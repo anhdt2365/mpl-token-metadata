@@ -257,7 +257,7 @@ export class Metadata extends Account<MetadataData> {
     return allMetadata.filter(
       (metadata) =>
         accountMap.has(metadata.data.mint) &&
-        (accountMap?.get(metadata.data.mint)?.amount?.toNumber() || 0) > 0,
+        (accountMap?.get(metadata.data.mint)?.amount || 0) > 0,
     );
   }
 
@@ -265,7 +265,7 @@ export class Metadata extends Account<MetadataData> {
     const accounts = await TokenAccount.getTokenAccountsByOwner(connection, owner);
     const accountsWithAmount = accounts
       .map(({ data }) => data)
-      .filter(({ amount }) => amount?.toNumber() > 0);
+      .filter(({ amount }) => amount > 0);
 
     return (
       await Promise.all(
@@ -290,7 +290,7 @@ export class Metadata extends Account<MetadataData> {
       // Only include tokens where amount equal to 1.
       // Note: This is not the same as mint supply.
       // NFTs by definition have supply of 1, but an account balance > 1 implies a mint supply > 1.
-      return data.amount?.eq(new BN(1)) ? [...memo, Metadata.getPDA(data.mint)] : memo;
+      return new BN(data.amount.toString()).eq(new BN(1)) ? [...memo, Metadata.getPDA(data.mint)] : memo;
     }, []);
 
     const metadataAddresses = await Promise.all(metadataPdaLookups);

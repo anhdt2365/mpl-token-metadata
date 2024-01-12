@@ -80,15 +80,15 @@ async function mintAndCreateMetadata(connection, transactionHandler, payer, args
 }
 exports.mintAndCreateMetadata = mintAndCreateMetadata;
 async function mintAndCreateMetadataV2(connection, transactionHandler, payer, args) {
-    const mint = await spl.Token.createMint(connection, payer, payer.publicKey, null, 0, spl.TOKEN_PROGRAM_ID);
-    const fromTokenAccount = await mint.getOrCreateAssociatedAccountInfo(payer.publicKey);
-    await mint.mintTo(fromTokenAccount.address, payer.publicKey, [], 1);
-    (0, utils_1.addLabel)('mint', mint.publicKey);
+    const mint = await spl.createMint(connection, payer, payer.publicKey, null, 0);
+    const fromTokenAccount = await spl.getOrCreateAssociatedTokenAccount(connection, payer, mint, payer.publicKey);
+    await spl.mintTo(connection, payer, mint, fromTokenAccount.address, payer.publicKey, 1);
+    (0, utils_1.addLabel)('mint', mint);
     const initMetadataData = args;
     const { createTxDetails, metadata } = await createMetadataV2({
         transactionHandler,
         publicKey: payer.publicKey,
-        mint: mint.publicKey,
+        mint,
         metadataData: initMetadataData,
     });
     (0, utils_1.addLabel)('metadata', metadata);
@@ -98,12 +98,12 @@ async function mintAndCreateMetadataV2(connection, transactionHandler, payer, ar
 exports.mintAndCreateMetadataV2 = mintAndCreateMetadataV2;
 async function createMasterEdition(connection, transactionHandler, payer, args, maxSupply) {
     const { mint, metadata } = await mintAndCreateMetadataV2(connection, transactionHandler, payer, args);
-    const masterEditionPubkey = await mpl_token_metadata_1.MasterEdition.getPDA(mint.publicKey);
+    const masterEditionPubkey = await mpl_token_metadata_1.MasterEdition.getPDA(mint);
     const createMev3 = new mpl_token_metadata_1.CreateMasterEditionV3({ feePayer: payer.publicKey }, {
         edition: masterEditionPubkey,
         metadata: metadata,
         updateAuthority: payer.publicKey,
-        mint: mint.publicKey,
+        mint,
         mintAuthority: payer.publicKey,
         maxSupply: new bn_js_1.default(maxSupply),
     });

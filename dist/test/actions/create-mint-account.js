@@ -17,7 +17,7 @@ class CreateMint extends web3_js_1.Transaction {
             space: spl_token_1.MintLayout.span,
             programId: spl_token_1.TOKEN_PROGRAM_ID,
         }));
-        this.add(spl_token_1.Token.createInitMintInstruction(spl_token_1.TOKEN_PROGRAM_ID, newAccountPubkey, decimals !== null && decimals !== void 0 ? decimals : 0, owner !== null && owner !== void 0 ? owner : feePayer, freezeAuthority !== null && freezeAuthority !== void 0 ? freezeAuthority : feePayer));
+        this.add((0, spl_token_1.createInitializeMintInstruction)(newAccountPubkey, decimals !== null && decimals !== void 0 ? decimals : 0, owner !== null && owner !== void 0 ? owner : feePayer, freezeAuthority !== null && freezeAuthority !== void 0 ? freezeAuthority : feePayer, spl_token_1.TOKEN_PROGRAM_ID));
     }
     static async createMintAccount(connection, payer) {
         const mint = web3_js_1.Keypair.generate();

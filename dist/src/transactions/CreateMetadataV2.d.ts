@@ -10,7 +10,7 @@ export declare class CreateMetadataV2Args extends Borsh.Data<{
     data: DataV2;
     isMutable: boolean;
 }
-export declare type CreateMetadataV2Params = {
+export type CreateMetadataV2Params = {
     metadata: PublicKey;
     metadataData: DataV2;
     updateAuthority: PublicKey;

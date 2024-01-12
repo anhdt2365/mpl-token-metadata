@@ -8,7 +8,7 @@ export declare class CreateMasterEditionArgs extends Borsh.Data<{
     instruction: number;
     maxSupply: BN | null;
 }
-export declare type CreateMasterEditionParams = {
+export type CreateMasterEditionParams = {
     edition: PublicKey;
     metadata: PublicKey;
     updateAuthority: PublicKey;

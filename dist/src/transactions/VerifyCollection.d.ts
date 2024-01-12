@@ -4,7 +4,7 @@ export declare class VerifyCollectionArgs extends Borsh.Data {
     static readonly SCHEMA: any;
     instruction: number;
 }
-declare type VerifyCollectionParams = {
+type VerifyCollectionParams = {
     metadata: PublicKey;
     collectionAuthorityRecord?: PublicKey;
     collectionAuthority: PublicKey;
