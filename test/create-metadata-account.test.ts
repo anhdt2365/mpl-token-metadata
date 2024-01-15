@@ -71,7 +71,7 @@ test('create-metadata-account: success', async (t) => {
 
   assertTransactionSummary(t, createTxDetails.txSummary, {
     fee: 5000,
-    msgRx: [/Program.+metaq/i, /Instruction.+ Create Metadata Accounts/i],
+    msgRx: [/Program.+metaX/i, /Instruction.+ Create Metadata Accounts/i],
   });
   const metadataAccount = await connection.getAccountInfo(metadata);
   logDebug({
@@ -91,8 +91,8 @@ test('create-metadata-account: success', async (t) => {
       uri: URI,
       sellerFeeBasisPoints: SELLER_FEE_BASIS_POINTS,
     },
-    primarySaleHappened: false,
-    isMutable: true,
+    primarySaleHappened: 0,
+    isMutable: 1,
   });
 
   const mintAccount = await connection.getAccountInfo(mint.publicKey);
@@ -149,7 +149,7 @@ test('create-metadata-account-v2: success', async (t) => {
 
   assertTransactionSummary(t, createTxDetails.txSummary, {
     fee: 5000,
-    msgRx: [/Program.+metaq/i, /Instruction.+ Create Metadata Accounts/i],
+    msgRx: [/Program.+metaX/i, /Instruction.+ Create Metadata Accounts/i],
   });
   const metadataAccount = await connection.getAccountInfo(metadata);
   logDebug({
@@ -169,8 +169,8 @@ test('create-metadata-account-v2: success', async (t) => {
       uri: URI,
       sellerFeeBasisPoints: SELLER_FEE_BASIS_POINTS,
     },
-    primarySaleHappened: false,
-    isMutable: true,
+    primarySaleHappened: 0,
+    isMutable: 1,
     tokenStandard: TokenStandard.FungibleAsset, // Since there is no master edition
   });
 });

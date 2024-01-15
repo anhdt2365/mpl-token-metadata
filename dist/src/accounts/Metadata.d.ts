@@ -67,8 +67,8 @@ export declare class MetadataData extends Borsh.Data<Args> {
     updateAuthority: StringPublicKey;
     mint: StringPublicKey;
     data: MetadataDataData;
-    primarySaleHappened: boolean;
-    isMutable: boolean;
+    primarySaleHappened: number;
+    isMutable: number;
     editionNonce: number | null;
     tokenStandard: TokenStandard | null;
     collection: Collection | null;

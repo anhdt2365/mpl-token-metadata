@@ -44,7 +44,7 @@ const SELLER_FEE_BASIS_POINTS = 10;
     (0, utils_2.logDebug)(createTxDetails.txSummary.logMessages.join('\n'));
     (0, amman_1.assertTransactionSummary)(t, createTxDetails.txSummary, {
         fee: 5000,
-        msgRx: [/Program.+metaq/i, /Instruction.+ Create Metadata Accounts/i],
+        msgRx: [/Program.+metaX/i, /Instruction.+ Create Metadata Accounts/i],
     });
     const metadataAccount = await connection.getAccountInfo(metadata);
     (0, utils_2.logDebug)({
@@ -63,8 +63,8 @@ const SELLER_FEE_BASIS_POINTS = 10;
             uri: URI,
             sellerFeeBasisPoints: SELLER_FEE_BASIS_POINTS,
         },
-        primarySaleHappened: false,
-        isMutable: true,
+        primarySaleHappened: 0,
+        isMutable: 1,
     });
     const mintAccount = await connection.getAccountInfo(mint.publicKey);
     (0, utils_2.logDebug)({
@@ -106,7 +106,7 @@ const SELLER_FEE_BASIS_POINTS = 10;
     (0, utils_2.logDebug)(createTxDetails.txSummary.logMessages.join('\n'));
     (0, amman_1.assertTransactionSummary)(t, createTxDetails.txSummary, {
         fee: 5000,
-        msgRx: [/Program.+metaq/i, /Instruction.+ Create Metadata Accounts/i],
+        msgRx: [/Program.+metaX/i, /Instruction.+ Create Metadata Accounts/i],
     });
     const metadataAccount = await connection.getAccountInfo(metadata);
     (0, utils_2.logDebug)({
@@ -125,8 +125,8 @@ const SELLER_FEE_BASIS_POINTS = 10;
             uri: URI,
             sellerFeeBasisPoints: SELLER_FEE_BASIS_POINTS,
         },
-        primarySaleHappened: false,
-        isMutable: true,
+        primarySaleHappened: 0,
+        isMutable: 1,
         tokenStandard: mpl_token_metadata_1.TokenStandard.FungibleAsset,
     });
 });
